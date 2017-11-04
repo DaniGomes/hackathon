@@ -13,13 +13,10 @@
       </q-btn>
 
       <q-toolbar-title>
-        Cuide-se
-        <div slot='subtitle'>Garnier</div>
+        iCare
       </q-toolbar-title>
 
-      <q-btn flat>
-        <q-icon name='notifications' />
-      </q-btn>
+      
 
     </q-toolbar>
     <div slot='left'>

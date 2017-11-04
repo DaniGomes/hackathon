@@ -6,6 +6,21 @@
   >
     <Sidebar/>
 
+    <div class="logo-container">
+      <div class="logo" >
+         <p class="caption">Insira o cronograma de medicação</p>
+        <q-datetime inverted v-model="date2" type="time" float-label="Time" />
+        <q-select
+          v-model="select"
+          :options="options"
+          />
+        <q-select
+          v-model="select"
+          :options="options2"
+          />
+        <q-btn>ok</q-btn>
+      </div>
+    </div>
 
     <!--
       Replace following <div> with
@@ -35,7 +50,9 @@ import {
   QItemMain,
   QFixedPosition,
   QFab,
-  QFabAction
+  QFabAction, 
+  QSelect,
+  QDatetime
 } from 'quasar';
 
 import Sidebar from './sidebar.vue';
@@ -65,7 +82,7 @@ function getRotationFromAccel(accelX, accelY, accelZ) {
 }
 
 export default {
-  name: 'remedios',
+  name: 'addremedios',
   components: {
     QLayout,
     QToolbar,
@@ -80,7 +97,9 @@ export default {
     QFixedPosition,
     QFab,
     QFabAction,
-    Sidebar
+    Sidebar, 
+    QSelect, 
+    QDatetime
   },
   data() {
     return {
@@ -89,7 +108,40 @@ export default {
       moveX: 0,
       moveY: 0,
       rotateY: 0,
-      rotateX: 0
+      rotateX: 0,
+      select: 'ex',
+      options: [
+        {
+          label: 'Diariamente',
+          value: 'hem'
+        },
+        {
+          label: 'Semanalmente',
+          value: 'end'
+        },
+        {
+          label: 'De 12 em 12 horas',
+          value: 'par'
+        },
+        {
+          label: 'De 6 em 6 horas',
+          value: 'poar'
+        }
+      ],
+      options2: [
+        {
+          label: 'Amato',
+          value: 'hem'
+        },
+        {
+          label: 'Primera30',
+          value: 'end'
+        },
+        {
+          label: 'Loratadina',
+          value: 'par'
+        }
+      ]
     };
   },
   computed: {

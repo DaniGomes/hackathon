@@ -31,6 +31,7 @@ export default new VueRouter({
     { path: '/perfil', component: load('perfil') },
     { path: '/remedios', component: load('remedios') },
     { path: '/exames', component: load('exames') },
+    { path: '/addremedios', component: load('addremedios') },
     // Always leave this last one
     { path: '*', component: load('Error404') } // Not found
 

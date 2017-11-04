@@ -15,16 +15,16 @@
         <div class='logo' >   
             <q-card inline>
           <q-card-main>
-            {{lorem}}
+            Você recebeu um novo comentário em seu tópico "Aplicação de Insulina" no fórum.
           </q-card-main>
         </q-card>
         <q-card inline>
         <q-card-title>
-          Title
-          <span slot='subtitle'>Subtitle</span>
+          Consulta próxima
+          <span slot='subtitle'>Dra. Geovana</span>
         </q-card-title>
         <q-card-main>
-          {{lorem}}
+          Não se esqueça de sua consulta no dia 05/11/2017 às 14:00.
         </q-card-main>
       </q-card>
       </div>
@@ -38,7 +38,7 @@
       >
         <q-fab-action
           color='primary'
-          @click='someMethod'
+          @click="launch('/#/addremedios')"
           icon='pie_chart'
         />
         <q-fab-action
@@ -238,4 +238,13 @@ export default {
   @media (max-width $breakpoint-xs-max)
     .q-card
       width 100%
+  .logo-container {
+  width: 95%;
+  height: 242px;
+  perspective: 800px;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  transform: translateX(-3%) translateY(-4%);
+}
 </style>

@@ -15,7 +15,12 @@
     -->
     <div class="logo-container">
       <div class="logo" >
-        <h2>teste</h2>
+        <form @submit.prevent="marcarConsulta">
+          <q-inline-datetime v-model="model" type="datetime" format="DD/MM/YYYY HH:mm"/>
+          <q-input v-model='text' stack-label="Médico(a)" />
+          <q-btn>ok</q-btn>
+        </form>
+        <p v-for="i in con">{{i}}</p>
       </div>
     </div>
     
@@ -40,15 +45,25 @@ import {
   QItemMain,
   QFixedPosition,
   QFab,
-  QFabAction
+  QFabAction,
+  QInlineDatetime,
+  date,
+  QInput,
+  Box
 } from "quasar";
 
 import Sidebar from "./sidebar.vue";
+
+const today = new Date()
+const { addToDate, subtractFromDate} = date
+const consultas = new Array()
+
 const { viewport } = dom,
   { position } = event,
   moveForce = 30,
   rotateForce = 40,
   RAD_TO_DEG = 180 / Math.PI;
+
 
 function getRotationFromAccel(accelX, accelY, accelZ) {
   /* Reference: http://stackoverflow.com/questions/3755059/3d-accelerometer-calculate-the-orientation#answer-30195572 */
@@ -85,16 +100,25 @@ export default {
     QFixedPosition,
     QFab,
     QFabAction,
-    Sidebar
+    Sidebar,
+    QInlineDatetime,
+    QInput, 
+    Box
   },
   data() {
     return {
-      orienting: window.DeviceOrientationEvent && !this.$q.platform.is.desktop,
+      /*orienting: window.DeviceOrientationEvent && !this.$q.platform.is.desktop,
       rotating: window.DeviceMotionEvent && !this.$q.platform.is.desktop,
       moveX: 0,
       moveY: 0,
       rotateY: 0,
-      rotateX: 0
+      rotateX: 0*/
+      text:  '',
+      model: '2017-10-21T10:40:14.674Z',
+      con: consultas,
+      minMaxModel: today,
+      min: subtractFromDate(today, {days: 5}),
+      max: addToDate(today, {days: 4, month: 1, minutes: 10}),
     };
   },
   computed: {
@@ -111,6 +135,21 @@ export default {
     }
   },
   methods: {
+    marcarConsulta(){
+      console.log(consultas);
+      var dataIni = this.model.split("T")[0];
+      var horaIni = this.model.split("T")[1];
+      var dataMeio = dataIni.split("-");
+      var horaFim = horaIni.split(".")[0];
+      var dataFim = dataMeio[2] + "/" + dataMeio[1] + "/" + dataMeio[0];
+      //const par = "Consulta com:  " + this.text + " ->  " + this.model;
+      const par = "Consulta com o médico(a)  " + this.text + " no dia " + dataFim + " às " + horaFim.split(":")[0] + ":" + horaFim.split(":")[1];
+
+      consultas.push(par);
+
+
+    },
+
     launch(url) {
       openURL(url);
     },
@@ -179,6 +218,8 @@ export default {
     }
   }
 };
+
+
 </script>
 
 <style lang="stylus">

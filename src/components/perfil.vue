@@ -11,7 +11,7 @@
         <img src='~assets/perfil.png'>
         
         <q-card><p>Você assiste televisão todo dia?</p>
-        <q-btn>Sim</q-btn><q-btn>Não</q-btn>
+        <q-btn onclick="apaga">Sim</q-btn><q-btn onclick="apaga">Não</q-btn>
         </q-card>
         <p>Nome:</br>Email:</br>Data de Nascimento:</br>Sexo:</br></p>
       </div>
@@ -113,6 +113,9 @@ export default {
   methods: {
     launch(url) {
       openURL(url);
+    },
+    apaga(){
+
     },
     move(evt) {
       const { width, height } = viewport(),
